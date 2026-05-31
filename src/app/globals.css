@@ -2,25 +2,138 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+
+  /* Brand greens */
+  --brand-50: #ecfdf3;
+  --brand-100: #d1fadf;
+  --brand-200: #a6f4c5;
+  --brand-300: #6ce9a6;
+  --brand-400: #32d583;
+  --brand-500: #12b76a;
+  --brand-600: #039855;
+  --brand-700: #027a48;
+  --brand-800: #05603a;
+  --brand-900: #054f31;
+
+  --ink: #0a0a0a;
+  --ink-soft: #1a1d1b;
+  --muted: #5b6360;
+  --line: rgba(10, 10, 10, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+
+  --font-sans: var(--font-outfit);
+
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-float: float 7s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
   }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate3d(-10%, -6%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(12%, 10%, 0) scale(1.25);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--brand-300);
+  color: var(--ink);
+}
+
+/* Slim, on-brand scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f6f5;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-500);
+  border-radius: 999px;
+  border: 2px solid #f4f6f5;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
 }
