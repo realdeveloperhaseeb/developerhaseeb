@@ -1,6 +1,9 @@
-import type { NextConfig } from "next";
+// @ts-check
 
-const nextConfig: NextConfig = {
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
   // Build a fully static site into `out/` so it can be hosted on any
   // web server (Hostinger shared hosting, Apache, Nginx, etc.) without a
   // Node.js runtime or framework auto-detection.
